@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+
+$orange: #f9a749;
+$orange-light: #ffd9ae;
+$purple: #6d4784;
+$purple-light: #fff6eb;
+$blue-darker: #354052;
+$black: #404040;
+$light: #fafafa;
+$grey-light: #918d8d;
+$shadow-areas: 0 0.8px 3px rgba($grey-light, 0.15);
+$text: $blue-darker;
+
+$primary: $orange;
+$secondary: $purple;
+
+$link: $secondary;
+$link-hover: $primary;
+$link-hover-border: $primary;
+$link-active: $primary;
+$link-focus: $primary;
+$link-focus-border: $primary;
+
+$pagination-color: $link;
+$pagination-border-color: $link;
+
+$body-background-color: $light;
+$input-shadow: $shadow-areas;
+$input-hover-border-color: none;
+$input-focus-border-color: $orange-light;
+$input-icon-active-color: $grey-light;
+$input-focus-box-shadow-size: 0 1px 5px;
+$box-shadow: $shadow-areas;
+$text-strong: $blue-darker;
+$table-cell-border: none;
+$table-cell-padding: 0.9em 0.75em;
+$table-row-hover-background-color: $purple-light;
+
+@import "~bulma/bulma";
+@import "./modifications", "./add-participante";

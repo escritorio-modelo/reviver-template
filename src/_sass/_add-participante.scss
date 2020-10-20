@@ -1,0 +1,70 @@
+.tab {
+  display: none;
+}
+
+ul.sessions-nav {
+  display: flex;
+  margin: 0 0 40px 0;
+  justify-content: space-around;
+  align-items: center;
+}
+li.session-item {
+  position: relative;
+  font-weight: 500;
+  display: inline-block;
+  padding: 10px 24px;
+  border-radius: 5px;
+  background: $light;
+  color: $secondary;
+  border: 2px solid $secondary;
+}
+li.session-item::before {
+  content: "_";
+  position: absolute;
+  right: 100px;
+  width: 355px;
+  height: 2px;
+  margin-top: 9px;
+  background-color: $secondary;
+  color: transparent;
+  z-index: -1;
+}
+li.session-item:first-child::before {
+  display: none;
+}
+li.item-checked {
+  background-color: $primary;
+  color: #ffffff;
+  border: 2px solid $primary;
+}
+li.item-checked::before {
+  background-color: $primary;
+}
+
+.selecionar-paciente-area{
+  border-radius: 7px 0 0 7px;
+  height: 300px;
+  background-color: $white;
+  padding: 25px;
+  border: 2px solid #eee;
+}
+
+.cadastrar-paciente-area {
+  border-radius: 0 7px 7px 0;
+  height: 300px;
+  background-color: $secondary;
+  padding: 25px;
+  color: $white;
+}
+.cadastrar-paciente-area > h2 {
+  color: $white;
+}
+
+.button-cadastro {
+  margin-top: 30px;
+}
+
+.button-cadastro > a {
+  border-color: $secondary;
+  color: $secondary;
+}
