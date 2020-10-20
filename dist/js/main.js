@@ -83,7 +83,7 @@ var AddParticipante = /*#__PURE__*/function () {
     document.querySelector(".modal-cadastrar-cuidador").addEventListener("click", function () {
       document.querySelector(".modal-cuidador").style.display = "block";
     });
-    document.querySelectorAll(".delete").forEach(function (button) {
+    document.querySelectorAll(".delete,.close-modal,.modal-background").forEach(function (button) {
       return button.addEventListener("click", function () {
         document.querySelector(".modal-cuidador").style.display = "none";
         document.querySelector(".modal-paciente").style.display = "none";
@@ -334,6 +334,46 @@ var Detalhes = {
 
 /***/ }),
 
+/***/ "./src/_javascript/utils/mascara.js":
+/*!******************************************!*\
+  !*** ./src/_javascript/utils/mascara.js ***!
+  \******************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+var mascara = function mascara() {
+  var masks = {
+    data: function data(value) {
+      return value.replace(/\D/g, "").replace(/(\d{2})(\d)/, "$1/$2").replace(/(\d{2})(\d)/, "$1/$2").replace(/(\/\d{4})\d+?$/, "$1");
+    },
+    cpf: function cpf(value) {
+      return value.replace(/\D/g, "").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})/, "$1-$2").replace(/(-\d{2})\d+?$/, "$1");
+    }
+  };
+  document.querySelectorAll("input").forEach(function ($input) {
+    var campo = $input.dataset.mask;
+
+    if (campo) {
+      $input.addEventListener("input", function (event) {
+        event.target.value = masks[campo](event.target.value);
+      }, false);
+    } else {
+      return;
+    }
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mascara);
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -346,19 +386,22 @@ var Detalhes = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _javascript_components_notificacao__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_javascript/components/notificacao */ "./src/_javascript/components/notificacao/index.js");
 /* harmony import */ var _javascript_pages_detalhes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_javascript/pages/detalhes */ "./src/_javascript/pages/detalhes/index.js");
-/* harmony import */ var _javascript_pages_cadastro_participante__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_javascript/pages/cadastro-participante */ "./src/_javascript/pages/cadastro-participante/index.js");
+/* harmony import */ var _javascript_pages_cadastro_participante__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_javascript/pages/cadastro-participante */ "./src/_javascript/pages/cadastro-participante/index.js");
+/* harmony import */ var _javascript_utils_mascara__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_javascript/utils/mascara */ "./src/_javascript/utils/mascara.js");
 __webpack_require__(/*! ./_sass/main.scss */ "./src/_sass/main.scss");
 
 
  // import api from "./service/api";
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
   _javascript_components_notificacao__WEBPACK_IMPORTED_MODULE_0__.default.bind();
   _javascript_pages_detalhes__WEBPACK_IMPORTED_MODULE_1__.default.opcoes();
+  (0,_javascript_utils_mascara__WEBPACK_IMPORTED_MODULE_2__.default)();
 
   if (document.querySelector(".button-cadastro-continuar")) {
-    new _javascript_pages_cadastro_participante__WEBPACK_IMPORTED_MODULE_2__.default();
+    new _javascript_pages_cadastro_participante__WEBPACK_IMPORTED_MODULE_3__.default();
   } // api.getListaFiltrada("chamadas", "xx", 0).then((res) => console.log(res));
 
 });

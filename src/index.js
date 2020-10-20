@@ -4,10 +4,12 @@ import notificacao from "./_javascript/components/notificacao";
 import Detalhes from "./_javascript/pages/detalhes";
 // import api from "./service/api";
 import AddParticipante from "./_javascript/pages/cadastro-participante";
+import mascara from "./_javascript/utils/mascara";
 
 document.addEventListener("DOMContentLoaded", function () {
   notificacao.bind();
   Detalhes.opcoes();
+  mascara();
 
   if (document.querySelector(".button-cadastro-continuar")) {
     new AddParticipante();

@@ -20,12 +20,14 @@ export default class AddParticipante {
       .addEventListener("click", () => {
         document.querySelector(".modal-cuidador").style.display = "block";
       });
-    document.querySelectorAll(".delete").forEach((button) =>
-      button.addEventListener("click", () => {
-        document.querySelector(".modal-cuidador").style.display = "none";
-        document.querySelector(".modal-paciente").style.display = "none";
-      })
-    );
+    document
+      .querySelectorAll(".delete,.close-modal,.modal-background")
+      .forEach((button) =>
+        button.addEventListener("click", () => {
+          document.querySelector(".modal-cuidador").style.display = "none";
+          document.querySelector(".modal-paciente").style.display = "none";
+        })
+      );
   }
 
   showTab(currentTab) {
