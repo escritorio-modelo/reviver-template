@@ -1,3 +1,5 @@
+import masks from "../../utils/masks";
+
 class Paciente {
   constructor() {
     let $ = document.querySelector.bind(document);
@@ -21,9 +23,11 @@ class Paciente {
   }
 
   add() {
+    let cpfWithoutMask = masks.removeMask("cpf", this.cpf.value);
+
     let data = {
       nome: this.nome.value,
-      cpf: this.cpf.value,
+      cpf: cpfWithoutMask,
       dataNascimento: this.dataNascimento.value,
       email: this.email.value,
       genero: this.genero.value,

@@ -255,18 +255,21 @@ var ParticipanteController = /*#__PURE__*/function () {
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+/* harmony import */ var _utils_masks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/masks */ "./src/_javascript/utils/masks.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var Cuidador = /*#__PURE__*/function () {
   function Cuidador() {
@@ -292,9 +295,10 @@ var Cuidador = /*#__PURE__*/function () {
   _createClass(Cuidador, [{
     key: "add",
     value: function add() {
+      var cpfWithoutMask = _utils_masks__WEBPACK_IMPORTED_MODULE_0__.default.removeMask("cpf", this.cpf.value);
       var data = {
         nome: this.nome.value,
-        cpf: this.cpf.value,
+        cpf: cpfWithoutMask,
         dataNascimento: this.dataNascimento.value,
         email: this.email.value,
         genero: this.genero.value,
@@ -361,18 +365,21 @@ var Cuidador = /*#__PURE__*/function () {
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+/* harmony import */ var _utils_masks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/masks */ "./src/_javascript/utils/masks.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var Paciente = /*#__PURE__*/function () {
   function Paciente() {
@@ -400,9 +407,10 @@ var Paciente = /*#__PURE__*/function () {
   _createClass(Paciente, [{
     key: "add",
     value: function add() {
+      var cpfWithoutMask = _utils_masks__WEBPACK_IMPORTED_MODULE_0__.default.removeMask("cpf", this.cpf.value);
       var data = {
         nome: this.nome.value,
-        cpf: this.cpf.value,
+        cpf: cpfWithoutMask,
         dataNascimento: this.dataNascimento.value,
         email: this.email.value,
         genero: this.genero.value,
@@ -466,6 +474,74 @@ var Paciente = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/_javascript/utils/masks.js":
+/*!****************************************!*\
+  !*** ./src/_javascript/utils/masks.js ***!
+  \****************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Mascaras = /*#__PURE__*/function () {
+  function Mascaras() {
+    _classCallCheck(this, Mascaras);
+  }
+
+  _createClass(Mascaras, null, [{
+    key: "bind",
+    value: function bind() {
+      var masks = {
+        data: function data(value) {
+          return value.replace(/\D/g, "").replace(/(\d{2})(\d)/, "$1/$2").replace(/(\d{2})(\d)/, "$1/$2").replace(/(\/\d{4})\d+?$/, "$1");
+        },
+        cpf: function cpf(value) {
+          return value.replace(/\D/g, "").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})/, "$1-$2").replace(/(-\d{2})\d+?$/, "$1");
+        }
+      };
+      document.querySelectorAll("input").forEach(function ($input) {
+        var campo = $input.dataset.mask;
+
+        if (campo) {
+          $input.addEventListener("input", function (event) {
+            event.target.value = masks[campo](event.target.value);
+          }, false);
+        } else {
+          return;
+        }
+      });
+    }
+  }, {
+    key: "removeMask",
+    value: function removeMask(mask, inputValue) {
+      if (mask === "cpf") {
+        var oneQuarter = inputValue.slice(0, 3);
+        var twoQuarter = inputValue.slice(4, 7);
+        var threeQuarter = inputValue.slice(8, 11);
+        var fourQuarter = inputValue.slice(12);
+        return "".concat(oneQuarter).concat(twoQuarter).concat(threeQuarter).concat(fourQuarter);
+      }
+    }
+  }]);
+
+  return Mascaras;
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Mascaras);
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -476,26 +552,29 @@ var Paciente = /*#__PURE__*/function () {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _javascript_components_Notificacao__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_javascript/components/Notificacao */ "./src/_javascript/components/Notificacao/index.js");
-/* harmony import */ var _javascript_components_DetailsOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_javascript/components/DetailsOptions */ "./src/_javascript/components/DetailsOptions/index.js");
-/* harmony import */ var _javascript_controllers_ParticipanteController__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_javascript/controllers/ParticipanteController */ "./src/_javascript/controllers/ParticipanteController.js");
+/* harmony import */ var _javascript_controllers_ParticipanteController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_javascript/controllers/ParticipanteController */ "./src/_javascript/controllers/ParticipanteController.js");
+/* harmony import */ var _javascript_components_Notificacao__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_javascript/components/Notificacao */ "./src/_javascript/components/Notificacao/index.js");
+/* harmony import */ var _javascript_components_DetailsOptions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_javascript/components/DetailsOptions */ "./src/_javascript/components/DetailsOptions/index.js");
+/* harmony import */ var _javascript_utils_masks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_javascript/utils/masks */ "./src/_javascript/utils/masks.js");
 __webpack_require__(/*! ./_sass/main.scss */ "./src/_sass/main.scss");
+
 
 
 
 
 document.addEventListener("DOMContentLoaded", function () {
   if (document.querySelector("[data-notification]")) {
-    _javascript_components_Notificacao__WEBPACK_IMPORTED_MODULE_0__.default.bind();
+    _javascript_components_Notificacao__WEBPACK_IMPORTED_MODULE_1__.default.bind();
   }
 
   if (document.querySelector(".detalhes-opcoes-botao")) {
-    _javascript_components_DetailsOptions__WEBPACK_IMPORTED_MODULE_1__.default.bind();
+    _javascript_components_DetailsOptions__WEBPACK_IMPORTED_MODULE_2__.default.bind();
   }
 
   if (document.querySelector(".button-cadastro-continuar")) {
-    var participanteController = new _javascript_controllers_ParticipanteController__WEBPACK_IMPORTED_MODULE_2__.default();
+    var participanteController = new _javascript_controllers_ParticipanteController__WEBPACK_IMPORTED_MODULE_0__.default();
     participanteController.bind();
+    _javascript_utils_masks__WEBPACK_IMPORTED_MODULE_3__.default.bind();
   }
 });
 
