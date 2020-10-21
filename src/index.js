@@ -2,17 +2,16 @@ require("./_sass/main.scss");
 
 import notificacao from "./_javascript/components/notificacao";
 import Detalhes from "./_javascript/pages/detalhes";
-// import api from "./service/api";
-import AddParticipante from "./_javascript/pages/cadastro-participante";
 import mascara from "./_javascript/utils/mascara";
+import ParticipanteController from "./_javascript/controllers/ParticipanteController";
 
 document.addEventListener("DOMContentLoaded", function () {
   notificacao.bind();
   Detalhes.opcoes();
-  mascara();
+  // mascara();
 
   if (document.querySelector(".button-cadastro-continuar")) {
-    new AddParticipante();
+    let participanteController = new ParticipanteController();
+    participanteController.bind();
   }
-  // api.getListaFiltrada("chamadas", "xx", 0).then((res) => console.log(res));
 });
