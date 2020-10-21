@@ -5,14 +5,9 @@ const notificacao = {
       ".notification .delete"
     );
 
-    if ($notification) {
-      let $notificationbody = document.querySelector(".column .notification")
-        .parentNode;
-
-      setTimeout(function () {
-        $notificationbody.parentNode.removeChild(notificationbody);
-      }, 5000);
-    }
+    setTimeout(function () {
+      $notification.parentNode.removeChild($notification);
+    }, 5000);
 
     if ($notificationDelete) {
       (document.querySelectorAll(".notification .delete") || []).forEach(

@@ -2,9 +2,35 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/_javascript/components/notificacao/index.js":
+/***/ "./src/_javascript/components/DetailsOptions/index.js":
+/*!************************************************************!*\
+  !*** ./src/_javascript/components/DetailsOptions/index.js ***!
+  \************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+var DetailsOptions = {
+  bind: function bind() {
+    document.querySelector(".detalhes-opcoes-botao").addEventListener("click", function () {
+      var bodyOptions = document.querySelector(".detalhes-opcoes-body");
+      bodyOptions.style.display == "block" ? bodyOptions.style.display = "none" : bodyOptions.style.display = "block";
+    });
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailsOptions);
+
+/***/ }),
+
+/***/ "./src/_javascript/components/Notificacao/index.js":
 /*!*********************************************************!*\
-  !*** ./src/_javascript/components/notificacao/index.js ***!
+  !*** ./src/_javascript/components/Notificacao/index.js ***!
   \*********************************************************/
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
@@ -20,13 +46,9 @@ var notificacao = {
   bind: function bind() {
     var $notification = document.querySelector("[data-notification]");
     var $notificationDelete = document.querySelectorAll(".notification .delete");
-
-    if ($notification) {
-      var $notificationbody = document.querySelector(".column .notification").parentNode;
-      setTimeout(function () {
-        $notificationbody.parentNode.removeChild(notificationbody);
-      }, 5000);
-    }
+    setTimeout(function () {
+      $notification.parentNode.removeChild($notification);
+    }, 5000);
 
     if ($notificationDelete) {
       (document.querySelectorAll(".notification .delete") || []).forEach(function ($delete) {
@@ -444,36 +466,6 @@ var Paciente = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/_javascript/pages/detalhes/index.js":
-/*!*************************************************!*\
-  !*** ./src/_javascript/pages/detalhes/index.js ***!
-  \*************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-var Detalhes = {
-  opcoes: function opcoes() {
-    var botaoOpcao = document.querySelector(".detalhes-opcoes-botao");
-
-    if (botaoOpcao) {
-      botaoOpcao.addEventListener("click", function () {
-        var bodyOptions = document.querySelector(".detalhes-opcoes-body");
-        bodyOptions.style.display == "block" ? bodyOptions.style.display = "none" : bodyOptions.style.display = "block";
-      });
-    }
-  }
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Detalhes);
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -484,18 +476,22 @@ var Detalhes = {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _javascript_components_notificacao__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_javascript/components/notificacao */ "./src/_javascript/components/notificacao/index.js");
-/* harmony import */ var _javascript_pages_detalhes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_javascript/pages/detalhes */ "./src/_javascript/pages/detalhes/index.js");
+/* harmony import */ var _javascript_components_Notificacao__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_javascript/components/Notificacao */ "./src/_javascript/components/Notificacao/index.js");
+/* harmony import */ var _javascript_components_DetailsOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_javascript/components/DetailsOptions */ "./src/_javascript/components/DetailsOptions/index.js");
 /* harmony import */ var _javascript_controllers_ParticipanteController__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_javascript/controllers/ParticipanteController */ "./src/_javascript/controllers/ParticipanteController.js");
 __webpack_require__(/*! ./_sass/main.scss */ "./src/_sass/main.scss");
 
 
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
-  _javascript_components_notificacao__WEBPACK_IMPORTED_MODULE_0__.default.bind();
-  _javascript_pages_detalhes__WEBPACK_IMPORTED_MODULE_1__.default.opcoes(); // mascara();
+  if (document.querySelector("[data-notification]")) {
+    _javascript_components_Notificacao__WEBPACK_IMPORTED_MODULE_0__.default.bind();
+  }
+
+  if (document.querySelector(".detalhes-opcoes-botao")) {
+    _javascript_components_DetailsOptions__WEBPACK_IMPORTED_MODULE_1__.default.bind();
+  }
 
   if (document.querySelector(".button-cadastro-continuar")) {
     var participanteController = new _javascript_controllers_ParticipanteController__WEBPACK_IMPORTED_MODULE_2__.default();
