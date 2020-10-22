@@ -38,6 +38,7 @@ $text-strong: $blue-darker;
 $table-cell-border: none;
 $table-cell-padding: 0.9em 0.75em;
 $table-row-hover-background-color: $purple-light;
+$modal-content-width: 920px;
 
 @import "~bulma/bulma";
 @import "./modifications", "./add-participante";
