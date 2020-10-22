@@ -16,6 +16,20 @@ class Mascaras {
           .replace(/(\d{3})(\d{1,2})/, "$1-$2")
           .replace(/(-\d{2})\d+?$/, "$1");
       },
+      phone(value) {
+        return value
+          .replace(/\D/g, "")
+          .replace(/(\d{2})(\d)/, "($1) $2")
+          .replace(/(\d{4})(\d)/, "$1-$2")
+          .replace(/(\d{4})-(\d)(\d{4})/, "$1$2-$3")
+          .replace(/(-\d{4})\d+?$/, "$1");
+      },
+      cep(value) {
+        return value
+          .replace(/\D/g, "")
+          .replace(/(\d{5})(\d)/, "$1-$2")
+          .replace(/(-\d{3})\d+?$/, "$1");
+      },
     };
 
     document.querySelectorAll("input").forEach(($input) => {
@@ -43,6 +57,15 @@ class Mascaras {
       let fourQuarter = inputValue.slice(12);
 
       return `${oneQuarter}${twoQuarter}${threeQuarter}${fourQuarter}`;
+    }
+    if (mask === "phone") {
+      let ddd = inputValue.slice(1, 3);
+      let number = inputValue.slice(5).replace("-", "");
+
+      return `${ddd}${number}`;
+    }
+    if (mask === "cep") {
+      return inputValue.replace("-", "");
     }
   }
 }

@@ -24,6 +24,8 @@ class Paciente {
 
   add() {
     let cpfWithoutMask = masks.removeMask("cpf", this.cpf.value);
+    let cepWithoutMask = masks.removeMask("cep", this.cep.value);
+    let phoneWithoutMask = masks.removeMask("phone", this.telefone.value);
 
     let data = {
       nome: this.nome.value,
@@ -34,11 +36,11 @@ class Paciente {
       estadoCivil: this.estadoCivil.value,
       parkinson: this.parkinson.value === "on" ? true : false,
       alzheimer: this.alzheimer.value === "on" ? true : false,
-      telefone: [this.telefone.value],
+      telefone: [phoneWithoutMask],
       endereco: {
         numero: this.enderecoNumero.value,
         complemento: this.complemento.value,
-        cep: this.cep.value,
+        cep: cepWithoutMask,
         rua: {
           nome: this.rua.value,
           bairro: {
