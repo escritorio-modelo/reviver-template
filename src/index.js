@@ -4,6 +4,7 @@ import ParticipanteController from "./_javascript/controllers/ParticipanteContro
 import notificacao from "./_javascript/components/Notificacao";
 import detailsOptions from "./_javascript/components/DetailsOptions";
 import masks from "./_javascript/utils/masks";
+import dataTablesListFilter from "./_javascript/components/DataTablesListFilter";
 
 document.addEventListener("DOMContentLoaded", function () {
   if (document.querySelector("[data-notification]")) {
@@ -19,5 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
     participanteController.bind();
 
     masks.bind();
+  }
+
+  if (document.querySelector("#chamadas,#pacientes,#cuidadores")) {
+    dataTablesListFilter.bind();
   }
 });
