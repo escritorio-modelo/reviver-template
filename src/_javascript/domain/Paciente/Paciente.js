@@ -34,8 +34,8 @@ class Paciente {
       email: this.email.value,
       genero: this.genero.value,
       estadoCivil: this.estadoCivil.value,
-      parkinson: this.parkinson.value === "on" ? true : false,
-      alzheimer: this.alzheimer.value === "on" ? true : false,
+      parkinson: this.parkinson.checked,
+      alzheimer: this.alzheimer.checked,
       telefone: [phoneWithoutMask],
       endereco: {
         numero: this.enderecoNumero.value,
