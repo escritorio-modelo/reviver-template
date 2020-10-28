@@ -68,6 +68,26 @@ class Mascaras {
       return inputValue.replace("-", "");
     }
   }
+
+  static addMask(mask, value) {
+    if (mask === "cpf") {
+      let oneQuarter = value.slice(0, 3);
+      let twoQuarter = value.slice(4, 7);
+      let threeQuarter = value.slice(8, 11);
+      let fourQuarter = value.slice(12);
+
+      return `${oneQuarter}.${twoQuarter}.${threeQuarter}-${fourQuarter}`;
+    }
+    if (mask === "phone") {
+      let ddd = value.slice(1, 3);
+      let number = value.slice(5);
+
+      return `(${ddd}) ${number}`;
+    }
+    if (mask === "cep") {
+      return `${value.slice(0, 4)}-${value.slice(5)}`;
+    }
+  }
 }
 
 export default Mascaras;

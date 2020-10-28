@@ -88,6 +88,8 @@ class Paciente {
           </div>`;
       notificationErrorsPaciente.innerHTML += line;
     });
+
+    notificationErrorsPaciente.scrollIntoView();
   }
 }
 

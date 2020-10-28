@@ -82,6 +82,8 @@ class Cuidador {
           </div>`;
       notificationErrorsCuidador.innerHTML += line;
     });
+
+    notificationErrorsCuidador.scrollIntoView();
   }
 }
 
