@@ -5,6 +5,7 @@ import notificacao from "./_javascript/components/Notificacao";
 import detailsOptions from "./_javascript/components/DetailsOptions";
 import masks from "./_javascript/utils/masks";
 import dataTablesListFilter from "./_javascript/components/DataTablesListFilter";
+import Atendimento from './_javascript/domain/Chamada/Atendimento';
 
 document.addEventListener("DOMContentLoaded", function () {
   if (document.querySelector("[data-notification]")) {
@@ -13,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (document.querySelector(".detalhes-opcoes-botao")) {
     detailsOptions.bind();
+
+    if (document.querySelector(".modal-cadastrar-atendimento")) {
+      let atendimento = new Atendimento();
+    }
   }
 
   if (document.querySelector(".button-cadastro-continuar")) {

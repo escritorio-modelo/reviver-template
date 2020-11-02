@@ -74,95 +74,42 @@
         <div class="tile is-ancestor">
           <div class="tile is-vertical is-12">
             <div class="tile">
-              <div class="tile is-parent is-vertical is-7">
+              <div class="tile is-parent is-vertical is-9">
                 <article class="tile is-child box">
                   <div class="is-pulled-left">
-                    <h2 class="title is-4">
-                      <i class="fas fa-user" style="margin-right: 10px"></i>João
-                      Marcos de Oliveira Santana
+                    <span
+                      th:classappend="${#strings.toString(chamada.status) != 'FECHADO' ? 'is-primary' : 'is-black'}"
+                      class="tag mb-4 is-spaced is-rounded mb-8"
+                      th:text="${chamada.status.displayValue}"
+                      >Status</span
+                    >
+                    <h2 class="title is-4" th:text="${chamada.titulo}">
+                      Chamada
                     </h2>
-                    <p class="has-text-weight-medium">
-                      Portador de:
-                      <strong class="text-info-details"
-                        >Parkibnsons Alzeimersons</strong
-                      >
-                    </p>
+                    <nav class="info-chamada-breadcrumb">
+                      <ul>
+                        <li class="has-text-weight-medium">Pessoas cadastradas: <i class="text-info-details">40/50</i></li>
+                        <li class="has-text-weight-medium">
+                          Data de início:
+                          <i
+                            th:text="${#temporals.format(chamada.dataInicio, 'dd/MM/yyyy')}" class="text-info-details"
+                            >dd/MM/aaaa</i
+                          >
+                        </li>
+                        <li class="has-text-weight-medium">
+                          Data de término:
+                          <i
+                            th:text="${#temporals.format(chamada.dataTermino, 'dd/MM/yyyy')}" class="text-info-details"
+                            >dd/MM/aaaa</i
+                          >
+                        </li>
+                      </ul>
+                    </nav>
 
-                    <h3
-                      class="title is-6 has-text-weight-medium title-info-details"
-                    >
-                      Dados pessoais
-                    </h3>
-                    <p class="has-text-weight-medium label-info-details">
-                      Gênero:
-                      <strong class="text-info-details"
-                        >Masculino feminino</strong
-                      >
-                    </p>
-                    <p class="has-text-weight-medium label-info-details">
-                      CPF:
-                      <strong class="text-info-details">028.395.082.06</strong>
-                    </p>
-                    <p class="has-text-weight-medium label-info-details">
-                      Data de nascimento:
-                      <strong class="text-info-details">13/12/1997</strong>
-                    </p>
-
-                    <h3
-                      class="title is-6 has-text-weight-medium title-info-details"
-                    >
-                      Contato
-                    </h3>
-                    <p class="has-text-weight-medium label-info-details">
-                      Telefone:
-                      <strong class="text-info-details">(96) 99121-8220</strong>
-                    </p>
-                    <p class="has-text-weight-medium label-info-details">
-                      E-mail:
-                      <strong class="text-info-details"
-                        >marcos.abreu.oliveira@gmail.com</strong
-                      >
-                    </p>
-
-                    <h3
-                      class="title is-6 has-text-weight-medium title-info-details"
-                    >
-                      Endereço
-                    </h3>
-                    <p class="has-text-weight-medium label-info-details">
-                      CEP:
-                      <strong class="text-info-details">68903-642</strong>
-                    </p>
-                    <p class="has-text-weight-medium label-info-details">
-                      Rua:
-                      <strong class="text-info-details"
-                        >Inspetor Antônio Oliveira</strong
-                      >
-                    </p>
-                    <p class="has-text-weight-medium label-info-details">
-                      Número:
-                      <strong class="text-info-details">1914</strong>
-                    </p>
-                    <p class="has-text-weight-medium label-info-details">
-                      Bairro
-                      <strong class="text-info-details"
-                        >Jardim Marco Zero</strong
-                      >
-                    </p>
-                    <p class="has-text-weight-medium label-info-details">
-                      Cidade:
-                      <strong class="text-info-details"
-                        >Laranjal do Jari</strong
-                      >
-                    </p>
-                    <p class="has-text-weight-medium label-info-details">
-                      Estado:
-                      <strong class="text-info-details"
-                        >Mato Grosso do Sul</strong
-                      >
-                    </p>
+                    <p th:text="${chamada.descricao}">Descrição da chamada.</p>
                   </div>
                   <div class="is-pulled-right">
+
                     <div class="detalhes-opcoes">
                       <p class="detalhes-opcoes-botao">
                         <i class="fas fa-ellipsis-v"></i>
@@ -170,76 +117,165 @@
 
                       <div class="detalhes-opcoes-body">
                         <a
-                          th:href="@{/chamadas/{id}/alterar(id=${chamada.id})}"
-                          class="is-primary"
+                      th:href="@{/chamadas/{id}/alterar(id=${chamada.id})}"
+                      class="is-primary"
+                      ><i class="fas fa-edit"></i> Editar chamada</a
+                    >
+                        <a onclick="confirmDelete()" 
+                          ><i class="far fa-trash-alt"></i> Deletar chamada</a
                         >
-                          <i class="fas fa-edit"></i> Editar paciente
-                        </a>
-                        <a onclick="confirmDelete()">
-                          <i class="far fa-trash-alt"></i> Deletar paciente
-                        </a>
                       </div>
                     </div>
                   </div>
                 </article>
               </div>
-
               <div class="tile is-parent">
-                <div class="tile is-vertical">
-                  <article class="tile is-child box">
-                    <div class="columns">
-                      <div class="column">
-                        <h3
-                          class="title is-6 has-text-weight-medium title-info-details-tile"
-                        >
-                          <i class="fas fa-user-friends"></i>
-                          Cuidador
-                        </h3>
-                      </div>
-
-                      <div class="column">
-                        <a
-                          href="#"
-                          class="has-text-weight-medium is-pulled-right"
-                          >Acessar cuidador</a
-                        >
-                      </div>
-                    </div>
-
-                    <div class="is-pulled-left">
-                      <p class="has-text-weight-medium label-info-details">
-                        Nome:
-                        <strong class="text-info-details"
-                          >João Marcos de Oliveira Santana</strong
-                        >
-                      </p>
-                      <p class="has-text-weight-medium label-info-details">
-                        Telefone:
-                        <strong class="text-info-details">96 9121-8220</strong>
-                      </p>
-                    </div>
-                  </article>
-                  <article class="tile is-child"></article>
-                  <article class="tile is-child"></article>
-                  <article class="tile is-child"></article>
-                </div>
+                <article class="tile is-child">
+                  <div class="buttons">
+                    <a th:href="@{/registrochamada/{id}(id=${chamada.id})}" class="button is-primary is-medium is-fullwidth">
+                      <span class="icon">
+                        <i class="fas fa-user-plus"></i>
+                      </span>
+                      <span>Cadastrar participante</span>
+                    </a>
+                   <!--  <button
+                      class="button is-primary is-outlined is-medium is-fullwidth"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-plus"></i>
+                      </span>
+                      <span>Cadastrar cuidador</span>
+                    </button> -->
+                  </div>
+                </article>
               </div>
             </div>
-            <!-- <div class="tile is-parent">
+            
+            <div class="tile">
+              <div class="tile is-parent is-vertical is-5">
+                <article class="tile is-child box">
+                  <h3 class="title is-5">Atendimentos</h3>
+
+                  <button class="button modal-cadastrar-atendimento">Agendar atendimento</button>
+
+                  <div class="modal modal-atendimento">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title">Agendar novo atendimento</p>
+                            <a class="delete" aria-label="close"></a>
+                        </header>
+                        <section class="modal-card-body">
+                            <div id="noticacao-erros-atendimento"></div>
+                
+                            <h3 class="title is-6 user-data-section">Dados do atendimento</h3>
+                
+                            <div class="field">
+                                <label class="label">Área</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="" id="area">
+                                </div>
+                            </div>
+                
+                            <div class="field">
+                                <label class="label">Data e hora</label>
+                                <div class="control">
+                                    <input class="input" type="datetime-local" placeholder="" id="data-hora">
+                                </div>
+                            </div>
+                
+                        </section>
+                        <footer class="modal-card-foot">
+                            <a class="button is-primary" id="cadastrar-atendimento">Salvar</a>
+                            <a class="close-modal button">Cancelar</a>
+                        </footer>
+                    </div>
+                </div>
+                </article>
+              </div>
+
+              <!-- <div class="tile is-parent">
+                <article class="tile is-child">
+                  <p class="title is-5">Pacientes cadastrados na chamada</p>
+                </article>
+              </div> -->
+            </div>
+
+            <div class="tile is-parent">
               <article class="tile is-child box">
-                <p class="title is-4">Lista de pacientes</p>
-                <p class="subtitle">Aligned with the right tile</p>
+                <p class="title is-5">Pacientes cadastrados na chamada</p>
                 <div class="content">
-                  
+
+                  <table id='pacientes' class="dataTable" style="border-radius: 7px;">
+                    <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>CPF</th>
+                      <th>Portador de</th>
+                      <th>Cuidador</th>
+                      <th>Acesso</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="table-content">
+                    <tr th:each="registroPaciente : ${chamada.getRegistrosPacientes()}">
+                      <td>
+                        <a th:href="@{/pacientes/{id}(id=${registroPaciente.paciente.id})}" class="has-text-weight-medium"
+                           th:text="${registroPaciente.paciente.nome}">
+                          Nome paciente
+                        </a>
+                      </td>
+                      <td>
+                        <p th:text="${registroPaciente.paciente.cpf}">Cpf paciente</p>
+                      </td>
+                      <td>
+                        <p>
+                          <i th:text="${registroPaciente.paciente.alzheimer ? 'Alzheimer' : ''}">Alzheimer</i>
+                          <i th:text="${registroPaciente.paciente.parkinson ? 'Parkinson' : ''}">Parkinson</i>
+                        </p>
+                      </td>
+                      <td>
+                        <a href="#">Nome Cuidador</a>
+                      </td>
+                      <td>
+                        <a th:href="@{/pacientes/{id}(id=${registroPaciente.paciente.id})}" class="has-text-weight-medium">
+                          Acessar paciente
+                        </a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
                 </div>
               </article>
-            </div> -->
+            </div>
+
           </div>
         </div>
       </div>
     </section>
+    <div id="modall" class="modal" >
+      <div id='modal-content' class="modal-background"></div>
+      <div  class="modal-content">
+        <div class="box">
+          <h2 class="subtitle">Tem certeza que deseja excluir esta chamada?</h2>
+          <a th:href="@{/chamadas/{id}/excluir(id=${chamada.id})}" class="button is-primary is-small ">
+            
+            <span>Sim</span>
+          </a>
+          <button onclick="closee()" class="button is-primary is-outlined is-small ">
+            
+            <span >Não</span>
+          </button>
+        </div>
+        
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
     <!-- Content End-->
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
